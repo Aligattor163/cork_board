@@ -5,7 +5,7 @@ import MenuRight from "./components/MenuRight";
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <header>
         <Header />
       </header>
