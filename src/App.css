@@ -1,0 +1,35 @@
+body main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #9b9a9a;
+}
+
+.main-board {
+  background-color: #f5f5dc;
+  border-radius: 10px;
+}
+
+.menu-right {
+  flex-shrink: 1;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+}
+
+.c-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  background:linear-gradient(90deg,#ffffff, #f7f7f9);
+  border-bottom:1px solid #e6e6e9;
+  gap:16px;
+}
+.c-header__left{display:flex;align-items:center;gap:18px}
+.c-header__logo{font-weight:700;font-size:18px}
+.c-header__right{display:flex;align-items:center;gap:10px}
+.c-header__search{padding:6px 8px;border:1px solid #ddd;border-radius:6px}
+.c-header__avatar{width:34px;height:34px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;font-weight:600}
