@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+
 .login-page {
     display: flex;
     flex-direction: column;
@@ -27,4 +29,37 @@
 
     width: 300px;
     padding-top: 50px;
+}
+
+.login-page__form-input .MuiFilledInput-root {
+    background-color: black;
+}
+
+.login-page__form-input .MuiInput-root::after {
+    border-bottom: 2px solid black;
+}
+
+.login-page__form-input .MuiInputLabel-root {
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+}
+
+.login-page__form-input .MuiInputLabel-root.Mui-focused {
+    color: black;
+}
+
+.login-page__submit-button.MuiButton-contained {
+    background-color: #00000033;
+    color: black;
+
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+
+    width: 180px;
+    margin-top: 20px;
+    padding: 0;
 }

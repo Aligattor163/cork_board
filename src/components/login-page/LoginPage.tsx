@@ -6,22 +6,24 @@ const LoginPage: React.FC = () => {
     return (
         <div className="login-page">
             <Box component="form" className="login-page__form">
-                <TextField
-                    label="Email"
-                    type="email"
-                    fullWidth
-                    margin="normal"/>
+                <TextField className="login-page__form-input"
+                           label="Email"
+                           type="email"
+                           fullWidth
+                           margin="normal"
+                           variant="standard"/>
 
-                <TextField
-                    label="Password"
-                    type="password"
-                    fullWidth
-                    margin="normal"/>
+                <TextField className="login-page__form-input"
+                           label="Password"
+                           type="password"
+                           fullWidth
+                           margin="normal"
+                           variant="standard"/>
 
-                <Button
-                    type="submit"
-                    variant="contained">
-                    Submit
+                <Button className="login-page__submit-button"
+                        type="submit"
+                        variant="contained">
+                    Login
                 </Button>
             </Box>
         </div>
