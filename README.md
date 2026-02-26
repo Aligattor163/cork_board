@@ -47,3 +47,5 @@ all of these groups must be stored in corresponded subtab
 5.1 Add share button to each note, shared note could be Removed, but still displays on recipient's board
 
 5.2 Highlight recieved and shared notes, also mentioned cards must contain info about reciever and sender (names mapped to id)
+
+### 6. add gh-pages support and deploy
