@@ -9,7 +9,6 @@ const Sticker: React.FC = () => {
                 <span className="sticker__header-text">Note #1</span>
                 <span className="sticker__content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, illum!</span>
             </div>
-
         </div>
     )
 }
