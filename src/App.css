@@ -1,43 +1,72 @@
 .app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .app-container main {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: stretch;
-  gap: 10px;
-  margin: 0;
-  padding: 10px;
-  font-family: Arial, sans-serif;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, sans-serif;
 }
 
 .main-board {
-  flex: 0 0 80%;
-  background-color: #f5f5dc;
-  border-radius: 10px;
+    flex: 0 0 80%;
+    background-color: #f5f5dc;
+    border-radius: 10px;
 }
 
 .menu-right {
-  flex: 1 1 0;
-  background-color: #d3d3d3;
-  border-radius: 10px;
+    flex: 1 1 0;
+    background-color: #d3d3d3;
+    border-radius: 10px;
 }
 
-.c-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 20px;
-  background:linear-gradient(90deg,#ffffff, #f7f7f9);
-  border-bottom:1px solid #e6e6e9;
-  gap:16px;
+.c-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #ffffff, #f7f7f9);
+    border-bottom: 1px solid #e6e6e9;
+    gap: 16px;
 }
-.c-header__left{display:flex;align-items:center;gap:18px}
-.c-header__logo{font-weight:700;font-size:18px}
-.c-header__right{display:flex;align-items:center;gap:10px}
-.c-header__search{padding:6px 8px;border:1px solid #ddd;border-radius:6px}
-.c-header__avatar{width:34px;height:34px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+.c-header__left {
+    display: flex;
+    align-items: center;
+    gap: 18px
+}
+
+.c-header__logo {
+    font-weight: 700;
+    font-size: 18px
+}
+
+.c-header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.c-header__search {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px
+}
+
+.c-header__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600
+}
