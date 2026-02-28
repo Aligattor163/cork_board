@@ -1,7 +1,15 @@
+import {Logger} from "./log-service.tsx";
+
 const LOGIN_ATTRIBUTE = "isLoggedIn"
 
 export const LoginService = {
     isLoggedIn: () => localStorage.getItem(LOGIN_ATTRIBUTE) === "true",
-    login: () => localStorage.setItem(LOGIN_ATTRIBUTE, "true"),
-    logout: () => localStorage.setItem(LOGIN_ATTRIBUTE, "false")
+    login: () => {
+        Logger.debug("Logging in...")
+        localStorage.setItem(LOGIN_ATTRIBUTE, "true")
+    },
+    logout: () => {
+        Logger.debug("Logging out...")
+        localStorage.setItem(LOGIN_ATTRIBUTE, "false")
+    }
 }

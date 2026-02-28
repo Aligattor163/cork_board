@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import {Box, Button, TextField} from "@mui/material";
 import './login-page.css'
-import {LoginService} from "../../services/login-service.tsx";
+
+interface LoginPageProps {
+    onLogin: () => void
+}
 
 // @ts-ignore
 enum START_OPTIONS {
@@ -10,7 +13,7 @@ enum START_OPTIONS {
     register = "register"
 }
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
     if (option === START_OPTIONS.start) {
@@ -41,7 +44,7 @@ const LoginPage: React.FC = () => {
             <div className="login-page">
                 <Box component="form"
                      className="login-page__form"
-                     onSubmit={() => LoginService.login()}>
+                     onSubmit={onLogin}>
 
                     <TextField className="login-page__form-input"
                                label="Email"
