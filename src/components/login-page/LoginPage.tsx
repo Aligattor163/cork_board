@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
-import './login-page.css'
 
 interface LoginPageProps {
-    onLogin: () => void
+    onLogin: () => void;
 }
 
 // @ts-ignore
@@ -16,98 +15,138 @@ enum START_OPTIONS {
 const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
+    const formSx = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '10px',
+        width: 300,
+        pt: '50px'
+    };
+
+    const inputSx = {
+        width: '100%',
+        '& .MuiFilledInput-root': {
+            backgroundColor: 'black'
+        },
+        '& .MuiInput-root::after': {
+            borderBottom: '2px solid black'
+        },
+        '& .MuiInputLabel-root': {
+            fontFamily: '"Cherry Bomb One", system-ui',
+            fontWeight: 400,
+            fontStyle: 'normal',
+            fontSize: '1.2rem',
+        },
+        '& .MuiInputLabel-root.Mui-focused': {
+            color: 'black'
+        }
+    };
+
+    const buttonSx = {
+        backgroundColor: '#00000033',
+        color: 'black',
+        fontFamily: '"Cherry Bomb One", system-ui',
+        fontWeight: 400,
+        fontStyle: 'normal',
+        fontSize: '2rem',
+        width: 180,
+        mt: 2,
+        p: 0
+    };
+
+    const pageSx = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        '&::before': {
+            content: '""',
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url("/images/login_logo.png")',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            filter: 'drop-shadow(0 16px 32px rgba(0, 0, 0, 0.55)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4))',
+            zIndex: -1
+        }
+    };
+
     if (option === START_OPTIONS.start) {
         return (
-            <div className="login-page">
-                <div className="login-page__form">
-                    <Button className="login-page__submit-button"
+            <Box sx={pageSx}>
+                <Box sx={formSx}>
+                    <Button sx={buttonSx}
                             variant="contained"
-                            onClick={() => {
-                                setOption(START_OPTIONS.login)
-                            }}>
+                            onClick={() => setOption(START_OPTIONS.login)}>
                         Login
                     </Button>
-                    <Button className="login-page__submit-button"
+                    <Button sx={buttonSx}
                             variant="contained"
-                            onClick={() => {
-                                setOption(START_OPTIONS.register)
-                            }}>
+                            onClick={() => setOption(START_OPTIONS.register)}>
                         Register
                     </Button>
-                </div>
-            </div>
-        )
+                </Box>
+            </Box>
+        );
     }
 
     if (option === START_OPTIONS.login) {
         return (
-            <div className="login-page">
-                <Box component="form"
-                     className="login-page__form"
-                     onSubmit={onLogin}>
-
-                    <TextField className="login-page__form-input"
+            <Box sx={pageSx}>
+                <Box component="form" sx={formSx} onSubmit={onLogin}>
+                    <TextField sx={inputSx}
                                label="Email"
                                type="email"
-                               fullWidth
-                               margin="normal"
-                               variant="standard"/>
-
-                    <TextField className="login-page__form-input"
+                               variant="standard"
+                               fullWidth margin="normal"/>
+                    <TextField sx={inputSx}
                                label="Password"
                                type="password"
+                               variant="standard"
                                fullWidth
-                               margin="normal"
-                               variant="standard"/>
-
-                    <Button className="login-page__submit-button"
+                               margin="normal"/>
+                    <Button sx={buttonSx}
                             type="submit"
                             variant="contained">
                         Login
                     </Button>
                 </Box>
-            </div>
-        )
+            </Box>
+        );
     }
 
     if (option === START_OPTIONS.register) {
         return (
-            <div className="login-page">
-                <Box component="form"
-                     className="login-page__form"
-                     onSubmit={() => setOption(START_OPTIONS.login)}>
-
-                    <TextField className="login-page__form-input"
-                               label="Email"
-                               type="email"
-                               fullWidth
-                               margin="normal"
-                               variant="standard"/>
-
-                    <TextField className="login-page__form-input"
+            <Box sx={pageSx}>
+                <Box component="form" sx={formSx} onSubmit={() => setOption(START_OPTIONS.login)}>
+                    <TextField
+                        sx={inputSx}
+                        label="Email"
+                        type="email" variant="standard" fullWidth margin="normal"/>
+                    <TextField sx={inputSx}
                                label="Password"
                                type="password"
-                               fullWidth
-                               margin="normal"
-                               variant="standard"/>
-
-                    <TextField className="login-page__form-input"
+                               variant="standard"
+                               fullWidth margin="normal"/>
+                    <TextField sx={inputSx}
                                label="Password confirmation"
                                type="password"
-                               fullWidth
-                               margin="normal"
-                               variant="standard"/>
-
-                    <Button className="login-page__submit-button"
+                               variant="standard"
+                               fullWidth margin="normal"/>
+                    <Button sx={buttonSx}
                             type="submit"
                             variant="contained">
                         Submit
                     </Button>
                 </Box>
-            </div>
-        )
+            </Box>
+        );
     }
+};
 
-}
-
-export default LoginPage
+export default LoginPage;
