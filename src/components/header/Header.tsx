@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
                         <Box
                             sx={{
                                 position: 'absolute',
-                                top: "43%",
+                                top: "45%",
                                 left: "50%",
                                 transform: 'translate(-50%, -50%)',
                                 fontFamily: '"Cherry Bomb One", system-ui',
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
                                     fontWeight: 400,
                                     fontStyle: 'normal',
                                     fontSize: '2rem',
-                                    mt: '6px',
+                                    mt: '5px',
                                     ml: '-17px',
                                     zIndex: 0,
                                     WebkitTextStroke: `1px ${strokeColor}`
