@@ -5,6 +5,7 @@ import MenuRight from "./components/MenuRight";
 import LoginPage from "./components/login-page/LoginPage.tsx";
 import {LoginService} from "./services/login-service.tsx";
 import {useState} from "react";
+import {Box, Grid} from "@mui/material";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(LoginService.isLoggedIn());
@@ -21,12 +22,18 @@ function App() {
 
     if (isAuthenticated) {
         return (
-            <div className="app-container">
+            <Box>
                 <Header onLogout={handleLogout}/>
-                <MainBoard/>
-                <MenuRight/>
-            </div>
-        );
+                <Grid container spacing={2} sx={{pt: "20px"}}>
+                    <Grid size={8}>
+                        <MainBoard/>
+                    </Grid>
+                    <Grid size={4}>
+                        <MenuRight/>
+                    </Grid>
+                </Grid>
+            </Box>
+        )
     }
     return <LoginPage onLogin={handleLogin}/>
 }
