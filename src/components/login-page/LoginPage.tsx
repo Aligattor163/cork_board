@@ -33,7 +33,7 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
             borderBottom: '2px solid black'
         },
         '& .MuiInputLabel-root': {
-            fontFamily: '"Cherry Bomb One", system-ui',
+            fontFamily: '"Margarine", sans-serif',
             fontWeight: 400,
             fontStyle: 'normal',
             fontSize: '1.2rem',
@@ -44,15 +44,19 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
     };
 
     const buttonSx = {
-        backgroundColor: '#00000033',
         color: 'black',
-        fontFamily: '"Cherry Bomb One", system-ui',
+        fontFamily: '"Margarine", sans-serif',
         fontWeight: 400,
         fontStyle: 'normal',
         fontSize: '2rem',
         width: 180,
         mt: 2,
-        p: 0
+        p: 0,
+        transition: "transform 0.2s ease",
+        "&:hover": {
+            transform: "scale(1.2)",
+            backgroundColor: 'transparent'
+        }
     };
 
     const pageSx = {
@@ -81,12 +85,12 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
             <Box sx={pageSx}>
                 <Box sx={formSx}>
                     <Button sx={buttonSx}
-                            variant="contained"
+                            variant="text"
                             onClick={() => setOption(START_OPTIONS.login)}>
                         Login
                     </Button>
                     <Button sx={buttonSx}
-                            variant="contained"
+                            variant="text"
                             onClick={() => setOption(START_OPTIONS.register)}>
                         Register
                     </Button>
@@ -112,7 +116,7 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
                                margin="normal"/>
                     <Button sx={buttonSx}
                             type="submit"
-                            variant="contained">
+                            variant="text">
                         Login
                     </Button>
                 </Box>
@@ -140,7 +144,7 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
                                fullWidth margin="normal"/>
                     <Button sx={buttonSx}
                             type="submit"
-                            variant="contained">
+                            variant="text">
                         Submit
                     </Button>
                 </Box>
