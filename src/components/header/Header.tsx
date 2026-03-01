@@ -26,7 +26,10 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
     const headerTextValue: string = "Cork board";
 
     return (
-        <AppBar position="static" sx={{boxShadow: "none"}}>
+        <AppBar position="sticky"
+                sx={{
+                    boxShadow: "none"
+                }}>
             <Toolbar sx={{
                 display: "flex",
                 flexDirection: "row",

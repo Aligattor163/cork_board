@@ -6,12 +6,6 @@ html, body, #root {
     margin: 0;
 }
 
-.main-board {
-    flex: 0 0 80%;
-    background-color: #f5f5dc;
-    border-radius: 10px;
-}
-
 .menu-right {
     flex: 1 1 0;
     background-color: #d3d3d3;

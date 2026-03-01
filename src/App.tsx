@@ -25,10 +25,10 @@ function App() {
             <Box>
                 <Header onLogout={handleLogout}/>
                 <Grid container spacing={2} sx={{pt: "20px"}}>
-                    <Grid size={8}>
+                    <Grid size={11}>
                         <MainBoard/>
                     </Grid>
-                    <Grid size={4}>
+                    <Grid size={1}>
                         <MenuRight/>
                     </Grid>
                 </Grid>
