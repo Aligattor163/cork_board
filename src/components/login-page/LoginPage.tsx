@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
+import {ReplyOutlined} from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
+
 
 interface LoginPageProps {
     onLogin: () => void;
@@ -16,10 +19,11 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
     const formSx = {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '10px',
+        gap: option !== START_OPTIONS.register ? '10px' : 0,
         width: 300,
         pt: '50px'
     };
@@ -58,6 +62,21 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
             backgroundColor: 'transparent'
         }
     };
+
+    const backButtonSx = (top: number, right: number) => ({
+        color: 'black',
+        position: "absolute",
+        transition: "transform 0.2s ease",
+        top: `${top}px`,
+        right: `${right}px`,
+        "svg": {
+            fontSize: "30px"
+        },
+        "&:hover": {
+            transform: "scale(1.2)",
+            backgroundColor: 'transparent'
+        }
+    });
 
     const pageSx = {
         display: 'flex',
@@ -103,6 +122,14 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
         return (
             <Box sx={pageSx}>
                 <Box component="form" sx={formSx} onSubmit={onLogin}>
+
+                    <IconButton
+                        sx={backButtonSx(-12, -25)}
+                        size="large"
+                        onClick={() => setOption(START_OPTIONS.start)}
+                        color="inherit">
+                        <ReplyOutlined/>
+                    </IconButton>
                     <TextField sx={inputSx}
                                label="Email"
                                type="email"
@@ -128,6 +155,13 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
         return (
             <Box sx={pageSx}>
                 <Box component="form" sx={formSx} onSubmit={() => setOption(START_OPTIONS.login)}>
+                    <IconButton
+                        sx={backButtonSx(15, -23)}
+                        size="large"
+                        onClick={() => setOption(START_OPTIONS.start)}
+                        color="inherit">
+                        <ReplyOutlined/>
+                    </IconButton>
                     <TextField
                         sx={inputSx}
                         label="Email"
