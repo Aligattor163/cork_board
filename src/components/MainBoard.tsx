@@ -5,7 +5,7 @@ const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
 
 const mainBoardSx = {
-    backgroundColor: "#fff", // снаружи белый фон
+    backgroundColor: "#fff",
     p: 2,
     transition: "transform 0.2s ease",
     "&:hover": {
