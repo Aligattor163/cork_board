@@ -6,11 +6,7 @@ const corkTexture: string = "/images/board_background.jpg"
 
 const mainBoardSx = {
     backgroundColor: "#fff",
-    p: 2,
-    transition: "transform 0.2s ease",
-    "&:hover": {
-        transform: "scale(1.005)"
-    }
+    p: 2
 }
 
 const boardBorderSx = {
