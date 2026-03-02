@@ -38,16 +38,19 @@ const MainBoard: React.FC = () => {
                     ),
                     url(${woodTexture})
                  `,
-                 backgroundSize: "cover",
-                 backgroundPosition: "center"
+                 backgroundRepeat: "no-repeat",
+                 backgroundPosition: "left",
+                 backgroundAttachment: "local"
              }}>
             <Box id="border_background"
                  sx={{
                      border: "1px solid black",
                      borderRadius: "10px",
                      backgroundImage: `url(${corkTexture})`,
-                     backgroundSize: "cover",
-                     backgroundPosition: "center",
+                     backgroundSize: "auto",
+                     backgroundRepeat: "no-repeat",
+                     backgroundPosition: "left",
+                     backgroundAttachment: "local",
                      width: "100%",
                      height: "100%",
                      minHeight: "calc(100vh - 200px)",
