@@ -6,10 +6,11 @@ import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import {AccountCircleOutlined} from "@mui/icons-material";
 
 interface HeaderProps {
-    onLogout: () => void
+    onLogout: () => void,
+    mainColor: string
 }
 
-const Header: React.FC<HeaderProps> = ({onLogout}) => {
+const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -19,9 +20,6 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
     };
 
     const strokeColor: string = '#47150a';
-    const gradientColor1: string = '#fdc964';
-    const gradientColor2: string = '#a1e3fb';
-    const gradientColor3: string = '#fdc964';
 
     const headerTextValue: string = "Cork board";
 
@@ -34,12 +32,7 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                background: `linear-gradient(135deg,
-                     ${gradientColor1} 0%,
-                     ${gradientColor2} 40%,
-                     ${gradientColor3} 70%,
-                     ${gradientColor1} 100%)
-                 `
+                background: mainColor
             }}>
                 <Box sx={{
                     display: "grid",
