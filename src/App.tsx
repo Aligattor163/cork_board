@@ -24,7 +24,7 @@ function App() {
         return (
             <Box>
                 <Header onLogout={handleLogout}/>
-                <Grid container spacing={2} sx={{pt: "20px"}}>
+                <Grid container spacing={2}>
                     <Grid size={11}>
                         <MainBoard/>
                     </Grid>
