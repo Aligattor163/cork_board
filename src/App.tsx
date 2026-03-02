@@ -5,10 +5,12 @@ import MenuRight from "./components/MenuRight";
 import LoginPage from "./components/login-page/LoginPage.tsx";
 import {LoginService} from "./services/login-service.tsx";
 import {useState} from "react";
-import {Box, Grid} from "@mui/material";
+import {Box} from "@mui/material";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(LoginService.isLoggedIn());
+
+    const mainToolbarColor: string = '#fdc964';
 
     const handleLogin = () => {
         LoginService.login();
@@ -23,15 +25,9 @@ function App() {
     if (isAuthenticated) {
         return (
             <Box>
-                <Header onLogout={handleLogout}/>
-                <Grid container spacing={2}>
-                    <Grid size={11}>
-                        <MainBoard/>
-                    </Grid>
-                    <Grid size={1}>
-                        <MenuRight/>
-                    </Grid>
-                </Grid>
+                <Header onLogout={handleLogout} mainColor={mainToolbarColor}/>
+                <MainBoard/>
+                <MenuRight mainColor={mainToolbarColor}/>
             </Box>
         )
     }
