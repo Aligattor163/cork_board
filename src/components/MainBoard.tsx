@@ -13,17 +13,14 @@ const mainBoardSx = {
     }
 }
 
-const MainBoard: React.FC = () => {
-    return <Box sx={mainBoardSx}>
-        <Box id="board_border"
-             sx={{
-                 border: "1px solid black",
-                 borderRadius: "20px",
-                 p: "20px", // board thickness
-                 boxSizing: "border-box",
-                 boxShadow: "0 4px 12px rgba(0,0,0,1)",
+const boardBorderSx = {
+    border: "1px solid black",
+    borderRadius: "20px",
+    p: "20px", // board thickness
+    boxSizing: "border-box",
+    boxShadow: "0 4px 12px rgba(0,0,0,1)",
 
-                 backgroundImage: `
+    backgroundImage: `
                     linear-gradient(
                       135deg,
                       rgba(255,255,255,0.35) 0%,
@@ -38,26 +35,33 @@ const MainBoard: React.FC = () => {
                     ),
                     url(${woodTexture})
                  `,
-                 backgroundRepeat: "no-repeat",
-                 backgroundPosition: "left",
-                 backgroundAttachment: "local"
-             }}>
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "left",
+    backgroundAttachment: "local"
+}
+
+const borderBackgroundSx = {
+    border: "1px solid black",
+    borderRadius: "10px",
+    backgroundImage: `url(${corkTexture})`,
+    backgroundSize: "auto",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "left",
+    backgroundAttachment: "local",
+    width: "100%",
+    height: "100%",
+    minHeight: "calc(100vh - 200px)",
+    p: 2,
+    boxSizing: "border-box",
+    boxShadow: "inset 0 0 20px rgba(0,0,0,1)"
+}
+
+const MainBoard: React.FC = () => {
+    return <Box sx={mainBoardSx}>
+        <Box id="board_border"
+             sx={boardBorderSx}>
             <Box id="border_background"
-                 sx={{
-                     border: "1px solid black",
-                     borderRadius: "10px",
-                     backgroundImage: `url(${corkTexture})`,
-                     backgroundSize: "auto",
-                     backgroundRepeat: "no-repeat",
-                     backgroundPosition: "left",
-                     backgroundAttachment: "local",
-                     width: "100%",
-                     height: "100%",
-                     minHeight: "calc(100vh - 200px)",
-                     p: 2,
-                     boxSizing: "border-box",
-                     boxShadow: "inset 0 0 20px rgba(0,0,0,1)"
-                 }}>
+                 sx={borderBackgroundSx}>
             </Box>
         </Box>
     </Box>;
