@@ -1,57 +1,47 @@
-import {Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
+import {Box, Drawer} from "@mui/material";
 import React, {useState} from 'react';
-import Dashboard from "@mui/icons-material/Dashboard";
-import Settings from "@mui/icons-material/Settings";
+import {MenuOpenRounded} from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 
 const collapsedWidth = 60;
-const expandedWidth = 240;
+const expandedWidth = 500;
 
-const MenuRight: React.FC = () => {
-    const [hover, setHover] = useState(false);
+interface MenuRightProps {
+    mainColor: string
+}
+
+const MenuRight: React.FC<MenuRightProps> = ({mainColor}) => {
+    const [toggle, setToggle] = useState(false);
     return (
-        <Box sx={{
-            display: "flex"
-        }}>
-            <Drawer
+        <Drawer id="menu_right"
                 variant="permanent"
                 anchor="right"
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
+                onClick={() => setToggle(!toggle)}
                 sx={{
-                    width: hover ? expandedWidth : collapsedWidth,
                     flexShrink: 0,
                     whiteSpace: "nowrap",
-                    transition: "width 0.3s",
                     "& .MuiDrawer-paper": {
-                        width: hover ? expandedWidth : collapsedWidth,
+                        borderTop: "1px solid #47150a",
+                        width: toggle ? expandedWidth : collapsedWidth,
                         transition: "width 0.3s",
                         overflowX: "hidden",
-                    },
-                }}
-            >
-                <Toolbar/>
-                <List>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <Dashboard/>
-                        </ListItemIcon>
-                        {hover && <ListItemText primary="Dashboard"/>}
-                    </ListItemButton>
-
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <Settings/>
-                        </ListItemIcon>
-                        {hover && <ListItemText primary="Settings"/>}
-                    </ListItemButton>
-                </List>
-            </Drawer>
-
-            <Box component="main" sx={{flexGrow: 1, p: 3}}>
-                <Toolbar/>
-                Main Content
+                        top: "64px",
+                        height: "calc(100% - 64px)",
+                        backgroundColor: mainColor,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center"
+                    }
+                }}>
+            <Box sx={{display: "flex", justifyContent: "flex-start", p: 1}}>
+                <IconButton
+                    size="large"
+                    color="inherit">
+                    <MenuOpenRounded sx={toggle ? {transform: "scaleX(-1)"} : {}}/>
+                </IconButton>
             </Box>
-        </Box>
+
+        </Drawer>
     );
 
 };
