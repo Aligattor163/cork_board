@@ -26,7 +26,8 @@ const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
     return (
         <AppBar position="sticky"
                 sx={{
-                    boxShadow: "none"
+                    boxShadow: "none",
+                    zIndex: (theme) => theme.zIndex.drawer + 1
                 }}>
             <Toolbar sx={{
                 display: "flex",
