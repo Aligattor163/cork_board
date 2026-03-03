@@ -12,35 +12,47 @@ interface MenuRightProps {
 
 const MenuRight: React.FC<MenuRightProps> = ({mainColor}) => {
     const [toggle, setToggle] = useState(false);
+
+    const menuDrawerSx = {
+        flexShrink: 0,
+        whiteSpace: "nowrap",
+        "& .MuiDrawer-paper": {
+            borderTop: "1px solid #47150a",
+            width: toggle ? expandedWidth : collapsedWidth,
+            transition: "width 0.3s",
+            overflowX: "hidden",
+            top: "64px",
+            height: "calc(100% - 64px)",
+            backgroundColor: mainColor,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            boxShadow: toggle
+                ? "-40px 0 16px rgba(0,0,0,0.6)"
+                : "none"
+        }
+    }
+
+    const menuToggleButtonSx = {
+        display: "flex",
+        justifyContent: "flex-start",
+        p: 1
+    }
+
     return (
         <Drawer id="menu_right"
                 variant="permanent"
                 anchor="right"
                 onClick={() => setToggle(!toggle)}
-                sx={{
-                    flexShrink: 0,
-                    whiteSpace: "nowrap",
-                    "& .MuiDrawer-paper": {
-                        borderTop: "1px solid #47150a",
-                        width: toggle ? expandedWidth : collapsedWidth,
-                        transition: "width 0.3s",
-                        overflowX: "hidden",
-                        top: "64px",
-                        height: "calc(100% - 64px)",
-                        backgroundColor: mainColor,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center"
-                    }
-                }}>
-            <Box sx={{display: "flex", justifyContent: "flex-start", p: 1}}>
+                sx={menuDrawerSx}>
+            <Box id="menu_right_toggle_button"
+                 sx={menuToggleButtonSx}>
                 <IconButton
                     size="large"
                     color="inherit">
                     <MenuOpenRounded sx={toggle ? {transform: "scaleX(-1)"} : {}}/>
                 </IconButton>
             </Box>
-
         </Drawer>
     );
 
