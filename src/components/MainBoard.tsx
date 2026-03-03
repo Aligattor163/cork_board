@@ -1,5 +1,6 @@
 import React from 'react';
-import {Box} from "@mui/material";
+import {Box, Grid} from "@mui/material";
+import Sticker from "./sticker/Sticker.tsx";
 
 const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
@@ -44,9 +45,12 @@ const borderBackgroundSx = {
     backgroundSize: "auto",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left",
-    backgroundAttachment: "local",
+    backgroundAttachment: "fixed",
+    overflowY: "auto",
+    overflowX: "hidden",
+    "&::-webkit-scrollbar": {display: "none"},
     width: "100%",
-    height: "100%",
+    height: "600px",
     minHeight: "calc(100vh - 138px)",
     p: 2,
     boxSizing: "border-box",
@@ -59,6 +63,15 @@ const MainBoard: React.FC = () => {
              sx={boardBorderSx}>
             <Box id="border_background"
                  sx={borderBackgroundSx}>
+                <Grid container spacing={1}>
+                    {Array.from(Array(20)).map((_, index) => (
+                        <Grid key={index} size={2}>
+                            <Sticker headerText="Note #1"
+                                     contentText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                     pinColor={undefined}></Sticker>
+                        </Grid>
+                    ))}
+                </Grid>
             </Box>
         </Box>
     </Box>;
