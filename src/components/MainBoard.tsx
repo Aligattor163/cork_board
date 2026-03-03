@@ -6,7 +6,8 @@ const corkTexture: string = "/images/board_background.jpg"
 
 const mainBoardSx = {
     backgroundColor: "#fff",
-    p: 2
+    p: 2,
+    width: "calc(100% - 93px)"
 }
 
 const boardBorderSx = {
@@ -46,7 +47,7 @@ const borderBackgroundSx = {
     backgroundAttachment: "local",
     width: "100%",
     height: "100%",
-    minHeight: "calc(100vh - 200px)",
+    minHeight: "calc(100vh - 138px)",
     p: 2,
     boxSizing: "border-box",
     boxShadow: "inset 0 0 20px rgba(0,0,0,1)"
