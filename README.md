@@ -5,27 +5,27 @@ A simple single page application for storing your notes and share it with others
 
 ## Current dev plan
 ### 1. Add main functionality and try core logic
-1.2 Add Header/Board/Menu
+~~1.2 Add Header/Board/Menu~~
 
-1.3 Add cards with responsive layout
+~~1.3 Add cards with responsive layout~~
 
 1.4 Add CRUD operations
 
 ### 2. Setup local devserver with mock files
-2.1 Investigate is it possible to use vite
+~~2.1 Investigate is it possible to use vite~~
 
-2.2 If not find modern solution
+~~2.2 If not find modern solution~~
 
-2.3 As a rescue plan: use JSexpress
+~~2.3 As a rescue plan: use JSexpress~~
 
-2.4 Add corresponded tasks to  package.json
+~~2.4 Add corresponded tasks to  package.json~~
 
 ### 3. Create some test API
-3.1 Implement some Basic easiest authentication
+~~3.1 Implement some Basic easiest authentication~~
 
-3.1.1 Create separated structure for FE and BE
+~~3.1.1 Create separated structure for FE and BE~~
 
-3.1.2 Add Login form to FE
+~~3.1.2 Add Login form to FE~~
 
 3.1.3 Implement auth API on BE side
 
