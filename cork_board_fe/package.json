@@ -1,13 +1,13 @@
 {
-  "name": "cork_board",
+  "name": "cork_board_fe",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "npm:i": "npm install",
-    "dev": "vite --host",
+    "dev": "concurrently -n FE,BE -c blue,green \"vite\" \"npm run dev --prefix ../cork_board_be\"",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint ..",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
