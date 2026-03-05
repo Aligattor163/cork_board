@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Fab, Grid, Tooltip, Zoom} from "@mui/material";
 import Sticker from "./Sticker.tsx";
 import {AddBox} from "@mui/icons-material";
-import AddDialog from "./AddDialog.tsx";
+import PinStickerDialog from "./PinStickerDialog.tsx";
 
 const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
@@ -84,7 +84,7 @@ const MainBoard: React.FC = () => {
                         ))}
                     </Grid>
                 </Box>
-                <Tooltip title="Add new note"
+                <Tooltip title="Pin a new sticker"
                          placement="left"
                          arrow
                          slots={{
@@ -109,8 +109,8 @@ const MainBoard: React.FC = () => {
                     </Fab>
                 </Tooltip>
             </Box>
-            <AddDialog isOpened={showAddDialog}
-                       onClose={handleAddDialogClose}/>
+            <PinStickerDialog isOpened={showAddDialog}
+                              onClose={handleAddDialogClose}/>
         </Box>
     );
 };

@@ -4,7 +4,7 @@ import {UtilService} from "../services/util-service.tsx";
 import type {Sticker} from "../types/AppTypes.ts";
 import {Logger} from "../services/log-service.tsx";
 
-interface AddDialogProps {
+interface PinStickerDialogProps {
     isOpened: boolean,
     onClose: () => void
 }
@@ -47,7 +47,7 @@ const buttonSx = {
     }
 };
 
-const AddDialog: React.FC<AddDialogProps> = ({isOpened, onClose}) => {
+const PinStickerDialog: React.FC<PinStickerDialogProps> = ({isOpened, onClose}) => {
     const formInitData: Sticker = {id: "", header: "", content: "", owners: [], isShared: false};
     const [formData, setFormData] = useState<Sticker>(formInitData);
 
@@ -119,4 +119,4 @@ const AddDialog: React.FC<AddDialogProps> = ({isOpened, onClose}) => {
     )
 }
 
-export default AddDialog
+export default PinStickerDialog
