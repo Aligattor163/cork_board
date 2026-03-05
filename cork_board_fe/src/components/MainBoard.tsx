@@ -8,7 +8,6 @@ const corkTexture: string = "/images/board_background.jpg"
 const mainBoardSx = {
     backgroundColor: "#fff",
     p: 2,
-    width: "calc(100% - 93px)"
 }
 
 const boardBorderSx = {
@@ -50,8 +49,8 @@ const borderBackgroundSx = {
     overflowX: "hidden",
     "&::-webkit-scrollbar": {display: "none"},
     width: "100%",
-    height: "600px",
-    minHeight: "calc(100vh - 138px)",
+    height: "calc(100vh - 138px)",
+    minHeight: "calc(300px)",
     p: 2,
     boxSizing: "border-box",
     boxShadow: "inset 0 0 20px rgba(0,0,0,1)"

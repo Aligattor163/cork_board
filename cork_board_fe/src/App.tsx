@@ -1,12 +1,11 @@
 import "./App.css";
 import Header from "./components/header/Header.tsx";
 import MainBoard from "./components/MainBoard.tsx";
-import MenuRight from "./components/MenuRight.tsx";
 import LoginPage from "./components/login-page/LoginPage.tsx";
 import {LoginService} from "./services/login-service.tsx";
 import {useState} from "react";
 import {Box} from "@mui/material";
-import { Logger } from "./services/log-service.tsx";
+import {Logger} from "./services/log-service.tsx";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(LoginService.isLoggedIn());
@@ -30,7 +29,6 @@ function App() {
             <Box>
                 <Header onLogout={handleLogout} mainColor={mainToolbarColor}/>
                 <MainBoard/>
-                <MenuRight mainColor={mainToolbarColor}/>
             </Box>
         )
     }
