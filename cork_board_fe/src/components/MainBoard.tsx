@@ -1,6 +1,8 @@
-import React from 'react';
-import {Box, Grid} from "@mui/material";
-import Sticker from "./sticker/Sticker.tsx";
+import React, {useState} from 'react';
+import {Box, Fab, Grid, Tooltip, Zoom} from "@mui/material";
+import Sticker from "./Sticker.tsx";
+import {AddBox} from "@mui/icons-material";
+import AddDialog from "./AddDialog.tsx";
 
 const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
@@ -57,23 +59,60 @@ const borderBackgroundSx = {
 }
 
 const MainBoard: React.FC = () => {
-    return <Box sx={mainBoardSx}>
-        <Box id="board_border"
-             sx={boardBorderSx}>
-            <Box id="border_background"
-                 sx={borderBackgroundSx}>
-                <Grid container spacing={1}>
-                    {Array.from(Array(20)).map((_, index) => (
-                        <Grid key={index} size={2}>
-                            <Sticker headerText="Note #1"
-                                     contentText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                     pinColor={undefined}></Sticker>
-                        </Grid>
-                    ))}
-                </Grid>
+    const [showAddDialog, setShowAddDialog] = useState<boolean>(false);
+
+    const handleAddDialogShow = (): void => {
+        setShowAddDialog(true);
+    }
+    const handleAddDialogClose = (): void => {
+        setShowAddDialog(false);
+    }
+
+    return (
+        <Box sx={mainBoardSx}>
+            <Box id="board_border"
+                 sx={boardBorderSx}>
+                <Box id="border_background"
+                     sx={borderBackgroundSx}>
+                    <Grid container spacing={1}>
+                        {Array.from(Array(20)).map((_, index) => (
+                            <Grid key={index} size={2}>
+                                <Sticker headerText="Note #1"
+                                         contentText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                         pinColor={undefined}></Sticker>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
+                <Tooltip title="Add new note"
+                         placement="left"
+                         arrow
+                         slots={{
+                             transition: Zoom
+                         }}
+                         slotProps={{
+                             tooltip: {
+                                 sx: {
+                                     fontSize: "1rem"
+                                 }
+                             }
+                         }}>
+                    <Fab color="default"
+                         sx={{
+                             position: "fixed",
+                             right: "50px",
+                             bottom: "50px",
+                             opacity: "0.8"
+                         }}
+                         onClick={handleAddDialogShow}>
+                        <AddBox/>
+                    </Fab>
+                </Tooltip>
             </Box>
+            <AddDialog isOpened={showAddDialog}
+                       onClose={handleAddDialogClose}/>
         </Box>
-    </Box>;
+    );
 };
 
 export default MainBoard;

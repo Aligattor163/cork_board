@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Typography} from "@mui/material";
-import {UtilService} from "../../services/util-service.tsx";
+import {UtilService} from "../services/util-service.tsx";
 
 const stickerBodySx = {
     width: 180,
@@ -36,7 +36,7 @@ const Sticker: React.FC<StickerProps> = ({headerText, contentText, pinColor, pap
         minHeight: 150,
         padding: "20px",
         margin: "40px auto",
-        backgroundColor: paperColor || UtilService.getRandomPastelColor(),
+        backgroundColor: paperColor || UtilService.colors.getRandomPastelColor(),
         border: "4px solid #3e2723",
         borderRadius: "2px 2px 30px 2px",
         boxShadow: "8px 8px 0 rgba(0,0,0,0.1)",
@@ -60,7 +60,7 @@ const Sticker: React.FC<StickerProps> = ({headerText, contentText, pinColor, pap
         transform: "translateX(-50%)",
         width: 25,
         height: 25,
-        backgroundColor: pinColor || UtilService.getRandomColor(),
+        backgroundColor: pinColor || UtilService.colors.getRandomColor(),
         border: "3px solid #3e2723",
         borderRadius: "50%",
         zIndex: 11,

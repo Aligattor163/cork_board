@@ -4,13 +4,13 @@ import Toolbar from "@mui/material/Toolbar"
 import React from 'react'
 import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import {AccountCircleOutlined} from "@mui/icons-material";
+import {UtilService} from "../services/util-service.tsx";
 
 interface HeaderProps {
-    onLogout: () => void,
-    mainColor: string
+    onLogout: () => void
 }
 
-const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
+const Header: React.FC<HeaderProps> = ({onLogout}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -18,8 +18,6 @@ const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const strokeColor: string = '#47150a';
 
     const headerTextValue: string = "Cork board";
 
@@ -33,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                background: mainColor
+                background: UtilService.colors.mainBackgroundColor
             }}>
                 <Box sx={{
                     display: "grid",
@@ -69,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
                                 fontSize: '2.5rem',
                                 fontWeight: 400,
                                 color: '#ffffff',
-                                WebkitTextStroke: `1px ${strokeColor}`,
+                                WebkitTextStroke: `1px ${UtilService.colors.mainStrokeColor}`,
                             }}
                         >
                             {headerTextValue[0]}
@@ -84,49 +82,61 @@ const Header: React.FC<HeaderProps> = ({onLogout, mainColor}) => {
                                     mt: '5px',
                                     ml: '-17px',
                                     zIndex: 0,
-                                    WebkitTextStroke: `1px ${strokeColor}`
+                                    WebkitTextStroke: `1px ${UtilService.colors.mainStrokeColor}`
                                 }}>
                         {headerTextValue.substring(1)}
                     </Typography>
                 </Box>
 
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit">
-                    <AccountCircleOutlined sx={{
-                        color: strokeColor,
-                        transition: "transform 0.2s ease",
-                        "&:hover": {
-                            opacity: "80%",
-                            transform: "scale(1.05)"
-                        }
-                    }}/>
-                </IconButton>
-                <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}>
-                    <MenuItem onClick={() => {
-                        onLogout();
-                        handleClose();
-                    }}>
-                        Logout
-                    </MenuItem>
-                </Menu>
+                <Box>
+                    <IconButton
+                        size="large"
+                        onClick={handleMenu}
+                        color="inherit">
+                        <AccountCircleOutlined sx={{
+                            fontSize: "2rem",
+                            color: UtilService.colors.mainStrokeColor,
+                            transition: "transform 0.2s ease",
+                            "&:hover": {
+                                opacity: "80%",
+                                transform: "scale(1.05)"
+                            }
+                        }}/>
+                    </IconButton>
+                    <Menu id="menu-appbar"
+                          anchorEl={anchorEl}
+                          anchorOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                          }}
+                          slotProps={{
+                              paper: {
+                                  sx: {
+                                      backgroundColor: UtilService.colors.mainBackgroundColor,
+                                      border: `3px solid ${UtilService.colors.mainStrokeColor}`
+                                  }
+                              },
+                              list: {
+                                  sx: {
+                                      p: 0
+                                  }
+                              }
+                          }}
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}>
+                        <MenuItem onClick={() => {
+                            onLogout();
+                            handleClose();
+                        }}>
+                            Logout
+                        </MenuItem>
+                    </Menu>
+                </Box>
             </Toolbar>
         </AppBar>
     )
