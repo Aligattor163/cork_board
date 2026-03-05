@@ -11,7 +11,7 @@ const mainBoardSx = {
 }
 
 const boardBorderSx = {
-    border: "1px solid black",
+    border: "3px solid #3e2723",
     borderRadius: "20px",
     p: "20px", // board thickness
     boxSizing: "border-box",
@@ -38,7 +38,7 @@ const boardBorderSx = {
 }
 
 const borderBackgroundSx = {
-    border: "1px solid black",
+    border: "3px solid #3e2723",
     borderRadius: "10px",
     backgroundImage: `url(${corkTexture})`,
     backgroundSize: "auto",
@@ -49,7 +49,7 @@ const borderBackgroundSx = {
     overflowX: "hidden",
     "&::-webkit-scrollbar": {display: "none"},
     width: "100%",
-    height: "calc(100vh - 138px)",
+    height: "calc(100vh - 142px)",
     minHeight: "calc(300px)",
     p: 2,
     boxSizing: "border-box",
