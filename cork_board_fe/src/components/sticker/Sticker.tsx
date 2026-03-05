@@ -1,5 +1,4 @@
 import React from 'react'
-import './sticker.css'
 import {Box, Typography} from "@mui/material";
 import {UtilService} from "../../services/util-service.tsx";
 
