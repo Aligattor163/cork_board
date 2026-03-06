@@ -2,7 +2,8 @@ export type User = {
     id: string,
     firstName: string,
     lastName: string,
-    stickers: Sticker[]
+    email: string,
+    password?: string
 }
 
 export type Sticker = {
@@ -10,5 +11,5 @@ export type Sticker = {
     header: string,
     content: string,
     isShared: boolean,
-    owners: User[]
+    ownerIDs: string[]
 }
