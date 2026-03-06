@@ -1,5 +1,6 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
+import {resolve} from "path";
 
 export default defineConfig({
     plugins: [react()],
@@ -9,6 +10,11 @@ export default defineConfig({
                 target: "http://localhost:3001",
                 changeOrigin: true
             }
+        }
+    },
+    resolve: {
+        alias: {
+            "@shared": resolve(__dirname, "../shared")
         }
     }
 })

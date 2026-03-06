@@ -5,12 +5,9 @@ import React from 'react'
 import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import {AccountCircleOutlined} from "@mui/icons-material";
 import {UtilService} from "../services/util-service.tsx";
+import {LoginService} from "../services/login-service.tsx";
 
-interface HeaderProps {
-    onLogout: () => void
-}
-
-const Header: React.FC<HeaderProps> = ({onLogout}) => {
+const Header: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -130,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({onLogout}) => {
                           open={Boolean(anchorEl)}
                           onClose={handleClose}>
                         <MenuItem onClick={() => {
-                            onLogout();
+                            LoginService.logout();
                             handleClose();
                         }}>
                             Logout

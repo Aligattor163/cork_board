@@ -2,36 +2,34 @@ import "./App.css";
 import Header from "./components/Header.tsx";
 import MainBoard from "./components/MainBoard.tsx";
 import LoginPage from "./components/LoginPage.tsx";
-import {LoginService} from "./services/login-service.tsx";
-import {useState} from "react";
 import {Box} from "@mui/material";
-import {Logger} from "./services/log-service.tsx";
+import {LoginService} from "./services/login-service.tsx";
+import React from "react";
+import {Navigate, Route, Routes} from "react-router-dom";
+
+
+const PrivateRoute = ({children}: { children: React.ReactElement }) => {
+    return LoginService.isLoggedIn() ? children : <Navigate to="/login" replace/>;
+};
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(LoginService.isLoggedIn());
-
-
-    const handleLogin = () => {
-        LoginService.login();
-        fetch("api/v1/auth")
-            .then(res => res.json())
-            .then((res) => setIsAuthenticated(!!res.isAuthenticated)).catch((err) => Logger.error(err));
-    };
-
-    const handleLogout = () => {
-        LoginService.logout();
-        setIsAuthenticated(false);
-    };
-
-    if (isAuthenticated) {
-        return (
-            <Box>
-                <Header onLogout={handleLogout}/>
-                <MainBoard/>
-            </Box>
-        )
-    }
-    return <LoginPage onLogin={handleLogin}/>
+    return (
+        <Routes>
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route
+                path="/"
+                element={
+                    <PrivateRoute>
+                        <Box>
+                            <Header/>
+                            <MainBoard/>
+                        </Box>
+                    </PrivateRoute>
+                }
+            />
+            <Route path="*" element={<Navigate to="/" replace/>}/>
+        </Routes>
+    )
 }
 
 export default App;

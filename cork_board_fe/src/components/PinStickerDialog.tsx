@@ -1,7 +1,7 @@
 import {Box, Button, Dialog, DialogActions, DialogContent, TextField} from "@mui/material";
 import React, {useState} from "react";
 import {UtilService} from "../services/util-service.tsx";
-import type {Sticker} from "../types/AppTypes.ts";
+import type {Sticker} from "../../../shared/types/AppTypes.ts";
 import {Logger} from "../services/log-service.tsx";
 
 interface PinStickerDialogProps {
@@ -48,7 +48,7 @@ const buttonSx = {
 };
 
 const PinStickerDialog: React.FC<PinStickerDialogProps> = ({isOpened, onClose}) => {
-    const formInitData: Sticker = {id: "", header: "", content: "", owners: [], isShared: false};
+    const formInitData: Sticker = {id: "", header: "", content: "", ownerIDs: [], isShared: false};
     const [formData, setFormData] = useState<Sticker>(formInitData);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

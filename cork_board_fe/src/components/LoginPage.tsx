@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
 import {ReplyOutlined} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-
-
-interface LoginPageProps {
-    onLogin: () => void;
-}
+import {LoginService} from "../services/login-service.tsx";
 
 // @ts-ignore
 enum START_OPTIONS {
@@ -15,7 +11,7 @@ enum START_OPTIONS {
     register = "register"
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
+const LoginPage: React.FC = () => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
     const formSx = {
@@ -121,7 +117,7 @@ const LoginPage: React.FC<LoginPageProps> = ({onLogin}) => {
     if (option === START_OPTIONS.login) {
         return (
             <Box sx={pageSx}>
-                <Box component="form" sx={formSx} onSubmit={onLogin}>
+                <Box component="form" sx={formSx} onSubmit={LoginService.login}>
 
                     <IconButton
                         sx={backButtonSx(-12, -25)}
