@@ -14,5 +14,6 @@ export const UtilService = {
         mainBackgroundColor: "#fdc964" as string,
         mainStrokeColor: "#3e2723" as string
     }
-
 }
+
+export default UtilService;

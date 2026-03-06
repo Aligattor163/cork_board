@@ -13,3 +13,8 @@ export type Sticker = {
     isShared: boolean,
     ownerIDs: string[]
 }
+
+export type Token = {
+    value: string,
+    userID: string
+}

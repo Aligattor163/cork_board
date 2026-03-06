@@ -9,3 +9,5 @@ export const Logger = {
 function isDebug(): boolean {
     return localStorage.getItem(DEBUG_STORAGE_PROPERTY_NAME) === "true";
 }
+
+export default Logger;

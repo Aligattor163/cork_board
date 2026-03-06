@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
 import {ReplyOutlined} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-import {LoginService} from "../services/login-service.tsx";
+import LoginService from "../services/login-service.tsx";
 
 // @ts-ignore
 enum START_OPTIONS {
@@ -117,8 +117,10 @@ const LoginPage: React.FC = () => {
     if (option === START_OPTIONS.login) {
         return (
             <Box sx={pageSx}>
-                <Box component="form" sx={formSx} onSubmit={LoginService.login}>
-
+                <Box component="form" sx={formSx} onSubmit={(e) => {
+                    e.preventDefault();
+                    LoginService.login("Admin@mail.com", "admin");
+                }}>
                     <IconButton
                         sx={backButtonSx(-12, -25)}
                         size="large"

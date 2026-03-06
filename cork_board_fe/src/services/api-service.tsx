@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // создаем экземпляр
-const api = axios.create({
+const ApiService = axios.create({
     baseURL: "http://localhost:3001", // твой backend
-    timeout: 5000,
+    timeout: 2000
 });
 
-export default api;
+export default ApiService;

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Typography} from "@mui/material";
-import {UtilService} from "../services/util-service.tsx";
+import UtilService from "../services/util-service.tsx";
 
 const stickerBodySx = {
     width: 180,

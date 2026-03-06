@@ -3,7 +3,7 @@ import Header from "./components/Header.tsx";
 import MainBoard from "./components/MainBoard.tsx";
 import LoginPage from "./components/LoginPage.tsx";
 import {Box} from "@mui/material";
-import {LoginService} from "./services/login-service.tsx";
+import LoginService from "./services/login-service.tsx";
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 
