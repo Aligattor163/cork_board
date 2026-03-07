@@ -16,10 +16,13 @@
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.8",
     "axios": "^1.13.6",
+    "immer": "^11.1.4",
+    "persist": "^0.2.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-is": "^19.2.4",
-    "react-router-dom": "^6.30.3"
+    "react-router-dom": "^6.30.3",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
