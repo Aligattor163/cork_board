@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(logger)
 app.use(delay(300))
 
-app.use("/api", authRoute)
+app.use("/", authRoute)
 
 app.use(errorMiddleware)
 

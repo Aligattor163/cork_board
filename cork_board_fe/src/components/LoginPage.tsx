@@ -14,6 +14,22 @@ enum START_OPTIONS {
 const LoginPage: React.FC = () => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
+    const formInitData = {email: "", password: "", passwordConfirm: ""};
+    const [formData, setFormData] = useState(formInitData);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setFormData((prev) => ({...prev, [name]: value || ""}))
+    }
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        LoginService.login(formData.email, formData.password);
+        handleClose();
+    }
+    const handleClose = () => {
+        setFormData(formInitData);
+    }
+
     const formSx = {
         position: 'relative',
         display: 'flex',
@@ -117,10 +133,7 @@ const LoginPage: React.FC = () => {
     if (option === START_OPTIONS.login) {
         return (
             <Box sx={pageSx}>
-                <Box component="form" sx={formSx} onSubmit={(e) => {
-                    e.preventDefault();
-                    LoginService.login("Admin@mail.com", "admin");
-                }}>
+                <Box component="form" sx={formSx} onSubmit={handleSubmit}>
                     <IconButton
                         sx={backButtonSx(-12, -25)}
                         size="large"
@@ -129,16 +142,20 @@ const LoginPage: React.FC = () => {
                         <ReplyOutlined/>
                     </IconButton>
                     <TextField sx={inputSx}
+                               name="email"
                                label="Email"
                                type="email"
                                variant="standard"
-                               fullWidth margin="normal"/>
+                               fullWidth margin="normal"
+                               onChange={handleChange}/>
                     <TextField sx={inputSx}
+                               name="password"
                                label="Password"
                                type="password"
                                variant="standard"
                                fullWidth
-                               margin="normal"/>
+                               margin="normal"
+                               onChange={handleChange}/>
                     <Button sx={buttonSx}
                             type="submit"
                             variant="text">
@@ -156,24 +173,35 @@ const LoginPage: React.FC = () => {
                     <IconButton
                         sx={backButtonSx(15, -23)}
                         size="large"
-                        onClick={() => setOption(START_OPTIONS.start)}
+                        onClick={() => {
+                            setOption(START_OPTIONS.start);
+                            handleClose();
+                        }}
                         color="inherit">
                         <ReplyOutlined/>
                     </IconButton>
                     <TextField
                         sx={inputSx}
+                        name="email"
                         label="Email"
-                        type="email" variant="standard" fullWidth margin="normal"/>
+                        type="email"
+                        variant="standard"
+                        fullWidth margin="normal"
+                        onChange={handleChange}/>
                     <TextField sx={inputSx}
+                               name="password"
                                label="Password"
                                type="password"
                                variant="standard"
-                               fullWidth margin="normal"/>
+                               fullWidth margin="normal"
+                               onChange={handleChange}/>
                     <TextField sx={inputSx}
+                               name="passwordConfirm"
                                label="Password confirmation"
                                type="password"
                                variant="standard"
-                               fullWidth margin="normal"/>
+                               fullWidth margin="normal"
+                               onChange={handleChange}/>
                     <Button sx={buttonSx}
                             type="submit"
                             variant="text">
