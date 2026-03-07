@@ -5,7 +5,7 @@ import React from 'react'
 import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import {AccountCircleOutlined} from "@mui/icons-material";
 import UtilService from "../services/util-service.tsx";
-import LoginService from "../services/login-service.tsx";
+import {useAuthStore} from "../../stores/auth-store.ts";
 
 const Header: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
                           open={Boolean(anchorEl)}
                           onClose={handleClose}>
                         <MenuItem onClick={() => {
-                            LoginService.logout();
+                            useAuthStore.getState().logout();
                             handleClose();
                         }}>
                             Logout

@@ -5,13 +5,14 @@ import LoginPage from "./components/LoginPage.tsx";
 import {Box} from "@mui/material";
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
-import LoginService from "./services/login-service.tsx";
-
-const PrivateRoute = ({children}: { children: React.ReactElement }) => {
-    return LoginService.isLoggedIn() ? children : <Navigate to="/login" replace/>;
-};
+import {useAuthStore} from "../stores/auth-store.ts";
 
 function App() {
+    const PrivateRoute: React.FC<{ children: React.ReactElement }> = ({children}) => {
+        console.log("TRIGGER")
+        return useAuthStore(state => state.isLogged) ? children : <Navigate to="/login" replace/>;
+    };
+
     return (
         <Routes>
             <Route path="/login" element={<LoginPage/>}/>

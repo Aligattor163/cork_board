@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Button, TextField} from "@mui/material";
 import {ReplyOutlined} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
-import LoginService from "../services/login-service.tsx";
+import {useAuthStore} from "../../stores/auth-store.ts";
 
 // @ts-ignore
 enum START_OPTIONS {
@@ -21,9 +21,9 @@ const LoginPage: React.FC = () => {
         const {name, value} = e.target;
         setFormData((prev) => ({...prev, [name]: value || ""}))
     }
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
-        LoginService.login(formData.email, formData.password);
+        await useAuthStore.getState().login(formData.email, formData.password);
         handleClose();
     }
     const handleClose = () => {
