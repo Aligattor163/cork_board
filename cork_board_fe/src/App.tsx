@@ -9,12 +9,14 @@ import {useAuthStore} from "../stores/auth-store.ts";
 
 function App() {
     const PrivateRoute: React.FC<{ children: React.ReactElement }> = ({children}) => {
-        console.log("TRIGGER")
         return useAuthStore(state => state.isLogged) ? children : <Navigate to="/login" replace/>;
     };
 
     return (
         <Routes>
+            <Route path="/test" element={
+                <textarea placeholder={"test"}/>
+            }/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route
                 path="/"

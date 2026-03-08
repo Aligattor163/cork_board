@@ -4,7 +4,7 @@ import ApiService from "../src/services/api-service";
 import Routes from "../../shared/Routes";
 import Logger from "../src/services/log-service";
 import {immer} from "zustand/middleware/immer";
-import {createJSONStorage, persist} from "zustand/middleware";
+import {createJSONStorage, devtools, persist} from "zustand/middleware";
 
 interface AuthStoreInitialState {
     token: Token,
@@ -15,7 +15,7 @@ interface AuthStoreActions {
     setToken: (token: Token) => void,
     resetToken: () => void,
     isValidToken: () => Promise<boolean>,
-    login: (email: string, password: string) => void,
+    login: (email: string, password: string) => Promise<void>,
     logout: () => void
 }
 
@@ -33,6 +33,7 @@ const authStoreInitialState = {
 const authStore: StateCreator<AuthStoreState,
     [
         ["zustand/immer", never],
+        ["zustand/devtools", never],
         ["zustand/persist", unknown]
     ]> = (set, get) => ({
     ...authStoreInitialState,
@@ -58,18 +59,19 @@ const authStore: StateCreator<AuthStoreState,
         return false;
     },
     login: async (email: string, password: string): Promise<void> => {
-        Logger.debug("Logging in...")
-        await ApiService
-            .post(Routes.authenticate, {email: email, password: btoa(password)} as User)
-            .then((resp) => {
-                set((state) => {
-                    state.token = resp.data;
-                    state.isLogged = true;
-                })
+        Logger.debug("[AuthStore] Logging in...")
+
+        try {
+            const resp = await ApiService.post(Routes.authenticate, {email: email, password: btoa(password)} as User);
+            set((state) => {
+                Logger.debug("[AuthStore] Got token from BE")
+                state.token = resp.data;
+                state.isLogged = true;
             })
-            .catch((err => {
-                Logger.error(`Login failed with <${err}>`)
-            }))
+            Logger.debug("[AuthStore] Successfully authenticated");
+        } catch (err) {
+            Logger.error(`[AuthStore] Login failed with <${err}>`)
+        }
     },
     logout: () => {
         get().resetToken();
@@ -78,10 +80,12 @@ const authStore: StateCreator<AuthStoreState,
 
 export const useAuthStore = create<AuthStoreState>()(
     immer(
-        persist(authStore, {
-            name: "auth-storage",
-            storage: createJSONStorage(() => sessionStorage),
-            partialize: (state) => ({token: state.token}),
-        })
+        devtools(
+            persist(authStore, {
+                    name: "auth-storage",
+                    storage: createJSONStorage(() => sessionStorage)
+                }
+            )
+        )
     )
 )

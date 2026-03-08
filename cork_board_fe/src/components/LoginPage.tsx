@@ -3,6 +3,9 @@ import {Box, Button, TextField} from "@mui/material";
 import {ReplyOutlined} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import {useAuthStore} from "../../stores/auth-store.ts";
+import {useNavigate} from "react-router-dom";
+import Logger from "../services/log-service.tsx";
+
 
 // @ts-ignore
 enum START_OPTIONS {
@@ -17,13 +20,23 @@ const LoginPage: React.FC = () => {
     const formInitData = {email: "", password: "", passwordConfirm: ""};
     const [formData, setFormData] = useState(formInitData);
 
+    const navigate = useNavigate();
+
+    const redirect = (url: string, isReplace?: boolean) => {
+        Logger.debug(`[LoginPage] Redirecting to <${url}>`);
+        navigate(url, {replace: !!isReplace});
+    }
+    const login = useAuthStore(state => state.login);
+
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setFormData((prev) => ({...prev, [name]: value || ""}))
     }
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await useAuthStore.getState().login(formData.email, formData.password);
+        await login(formData.email, formData.password);
+        redirect("/", true);
         handleClose();
     }
     const handleClose = () => {
