@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar"
 import React from 'react'
 import {Box, Menu, MenuItem, Typography} from "@mui/material";
 import {AccountCircleOutlined} from "@mui/icons-material";
-import UtilService from "../services/util-service.tsx";
+import UtilService from "../services/util-service.ts";
 import {useAuthStore} from "../../stores/auth-store.ts";
 
 const Header: React.FC = () => {

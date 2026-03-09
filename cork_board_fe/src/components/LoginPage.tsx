@@ -4,7 +4,7 @@ import {ReplyOutlined} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import {useAuthStore} from "../../stores/auth-store.ts";
 import {useNavigate} from "react-router-dom";
-import Logger from "../services/log-service.tsx";
+import Logger from "../services/log-service.ts";
 
 
 // @ts-ignore
@@ -17,7 +17,7 @@ enum START_OPTIONS {
 const LoginPage: React.FC = () => {
     const [option, setOption] = useState<START_OPTIONS>(START_OPTIONS.start);
 
-    const formInitData = {email: "", password: "", passwordConfirm: ""};
+    const formInitData = {email: "Admin@mail.com", password: "admin", passwordConfirm: ""};
     const [formData, setFormData] = useState(formInitData);
 
     const navigate = useNavigate();
@@ -156,6 +156,7 @@ const LoginPage: React.FC = () => {
                     </IconButton>
                     <TextField sx={inputSx}
                                name="email"
+                               value={formData.email}
                                label="Email"
                                type="email"
                                variant="standard"
@@ -163,6 +164,7 @@ const LoginPage: React.FC = () => {
                                onChange={handleChange}/>
                     <TextField sx={inputSx}
                                name="password"
+                               value={formData.password}
                                label="Password"
                                type="password"
                                variant="standard"
@@ -196,6 +198,7 @@ const LoginPage: React.FC = () => {
                     <TextField
                         sx={inputSx}
                         name="email"
+                        value={formData.email}
                         label="Email"
                         type="email"
                         variant="standard"
@@ -203,6 +206,7 @@ const LoginPage: React.FC = () => {
                         onChange={handleChange}/>
                     <TextField sx={inputSx}
                                name="password"
+                               value={formData.password}
                                label="Password"
                                type="password"
                                variant="standard"
@@ -210,6 +214,7 @@ const LoginPage: React.FC = () => {
                                onChange={handleChange}/>
                     <TextField sx={inputSx}
                                name="passwordConfirm"
+                               value={formData.passwordConfirm}
                                label="Password confirmation"
                                type="password"
                                variant="standard"

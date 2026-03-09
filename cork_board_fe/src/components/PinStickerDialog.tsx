@@ -1,8 +1,8 @@
 import {Box, Button, Dialog, DialogActions, DialogContent, TextField} from "@mui/material";
 import React, {useState} from "react";
-import UtilService from "../services/util-service.tsx";
+import UtilService from "../services/util-service.ts";
 import type {Sticker} from "../../../shared/types/AppTypes.ts";
-import Logger from "../services/log-service.tsx";
+import Logger from "../services/log-service.ts";
 
 interface PinStickerDialogProps {
     isOpened: boolean,

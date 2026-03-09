@@ -1,10 +1,10 @@
 import {create, type StateCreator} from 'zustand'
 import type {Token, User} from "../../shared/types/AppTypes.ts";
-import ApiService from "../src/services/api-service";
 import Routes from "../../shared/Routes";
-import Logger from "../src/services/log-service";
+import Logger from "../src/services/log-service.ts";
 import {immer} from "zustand/middleware/immer";
 import {createJSONStorage, devtools, persist} from "zustand/middleware";
+import ApiService from "../src/services/api-service.tsx";
 
 interface AuthStoreInitialState {
     token: Token,
@@ -16,7 +16,7 @@ interface AuthStoreActions {
     resetToken: () => void,
     isValidToken: () => Promise<boolean>,
     login: (email: string, password: string) => Promise<void>,
-    logout: () => void
+    logout: () => Promise<void>
 }
 
 interface AuthStoreState extends AuthStoreInitialState, AuthStoreActions {
@@ -73,8 +73,15 @@ const authStore: StateCreator<AuthStoreState,
             Logger.error(`[AuthStore] Login failed with <${err}>`)
         }
     },
-    logout: () => {
-        get().resetToken();
+    logout: async () => {
+        try {
+            await ApiService.post(Routes.logout);
+            Logger.debug("[AuthStore] Successfully logged out");
+        } catch (err) {
+            Logger.error(`[AuthStore] An unexpected error during logout: <${err}>`)
+        } finally {
+            get().resetToken();
+        }
     }
 });
 

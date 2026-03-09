@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Fab, Grid, Tooltip, Zoom} from "@mui/material";
-import Sticker from "./Sticker.tsx";
+import StickerComponent from "./StickerComponent.tsx";
 import {AddBox} from "@mui/icons-material";
 import PinStickerDialog from "./PinStickerDialog.tsx";
+import type {Sticker} from "../../../shared/types/AppTypes.ts";
+import ApiService from "../services/api-service.tsx";
+import Routes from "../../../shared/Routes.ts";
+import Logger from "../services/log-service.ts";
 
 const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
@@ -60,6 +64,7 @@ const borderBackgroundSx = {
 
 const MainBoard: React.FC = () => {
     const [showAddDialog, setShowAddDialog] = useState<boolean>(false);
+    const [stickers, setStickers] = useState<Sticker[]>([] as Sticker[]);
 
     const handleAddDialogShow = (): void => {
         setShowAddDialog(true);
@@ -68,6 +73,21 @@ const MainBoard: React.FC = () => {
         setShowAddDialog(false);
     }
 
+    const loadStickers = () => {
+        ApiService
+            .get(Routes.stickers)
+            .then((resp) => {
+                setStickers(resp.data as Sticker[]);
+            })
+            .catch((err) => {
+                Logger.error(`Unable to load stickers: <${err}>`);
+            })
+    }
+
+    useEffect(() => {
+        loadStickers();
+    }, [])
+
     return (
         <Box sx={mainBoardSx}>
             <Box id="board_border"
@@ -75,11 +95,11 @@ const MainBoard: React.FC = () => {
                 <Box id="border_background"
                      sx={borderBackgroundSx}>
                     <Grid container spacing={1}>
-                        {Array.from(Array(20)).map((_, index) => (
+                        {Array.from(stickers).map((_, index) => (
                             <Grid key={index} size={2}>
-                                <Sticker headerText="Note #1"
-                                         contentText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                         pinColor={undefined}></Sticker>
+                                <StickerComponent headerText={stickers[index].header}
+                                                  contentText={stickers[index].content}
+                                                  pinColor={undefined}></StickerComponent>
                             </Grid>
                         ))}
                     </Grid>

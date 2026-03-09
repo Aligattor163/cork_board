@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Typography} from "@mui/material";
-import UtilService from "../services/util-service.tsx";
+import UtilService from "../services/util-service.ts";
 
 const stickerBodySx = {
     width: 180,
@@ -29,7 +29,7 @@ interface StickerProps {
     paperColor?: string | undefined
 }
 
-const Sticker: React.FC<StickerProps> = ({headerText, contentText, pinColor, paperColor}) => {
+const StickerComponent: React.FC<StickerProps> = ({headerText, contentText, pinColor, paperColor}) => {
     const stickerSx = {
         position: "relative",
         width: 150,
@@ -87,4 +87,4 @@ const Sticker: React.FC<StickerProps> = ({headerText, contentText, pinColor, pap
     )
 }
 
-export default Sticker
+export default StickerComponent
