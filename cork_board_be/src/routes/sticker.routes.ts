@@ -1,6 +1,5 @@
 import {Router} from "express"
 import logger from "../middleware/logger.middleware";
-import Routes from "@shared/Routes";
 import auth from "../middleware/auth.middleware";
 import {stickers} from "../data/stickers.mock";
 
