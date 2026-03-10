@@ -5,6 +5,7 @@ import Logger from "../src/services/log-service.ts";
 import {immer} from "zustand/middleware/immer";
 import {createJSONStorage, devtools, persist} from "zustand/middleware";
 import ApiService from "../src/services/api-service.tsx";
+import {useLoadingStore} from "./loading-store.ts";
 
 interface AuthStoreState {
     token: Token,
@@ -62,6 +63,7 @@ const authStore: StateCreator<AuthStore,
         Logger.debug("[AuthStore] Logging in...")
 
         try {
+            useLoadingStore.getState().switchLoading(true);
             const resp = await ApiService.post(Routes.authenticate, {email: email, password: btoa(password)} as User);
             set((state) => {
                 Logger.debug("[AuthStore] Got token from BE")
@@ -71,6 +73,8 @@ const authStore: StateCreator<AuthStore,
             Logger.debug("[AuthStore] Successfully authenticated");
         } catch (err) {
             Logger.error(`[AuthStore] Login failed with <${err}>`)
+        } finally {
+            useLoadingStore.getState().switchLoading(false);
         }
     },
     logout: async () => {

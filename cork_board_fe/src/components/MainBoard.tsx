@@ -7,6 +7,7 @@ import type {Sticker} from "../../../shared/types/AppTypes.ts";
 import ApiService from "../services/api-service.tsx";
 import Routes from "../../../shared/Routes.ts";
 import Logger from "../services/log-service.ts";
+import {useLoadingStore} from "../../stores/loading-store.ts";
 
 const woodTexture: string = "/images/board_border_background.jpg"
 const corkTexture: string = "/images/board_background.jpg"
@@ -74,14 +75,15 @@ const MainBoard: React.FC = () => {
     }
 
     const loadStickers = () => {
-        ApiService
-            .get(Routes.stickers)
+        useLoadingStore.getState().switchLoading(true);
+        ApiService.get(Routes.stickers)
             .then((resp) => {
                 setStickers(resp.data as Sticker[]);
             })
             .catch((err) => {
                 Logger.error(`Unable to load stickers: <${err}>`);
             })
+            .finally(() => useLoadingStore.getState().switchLoading(false))
     }
 
     useEffect(() => {
