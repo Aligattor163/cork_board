@@ -6,6 +6,7 @@ import {Box} from "@mui/material";
 import React from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {useAuthStore} from "../stores/auth-store.ts";
+import LoadingBackDrop from "./components/LoadingBackDrop.tsx";
 
 function App() {
     const PrivateRoute: React.FC<{ children: React.ReactElement }> = ({children}) => {
@@ -13,24 +14,28 @@ function App() {
     };
 
     return (
-        <Routes>
-            <Route path="/test" element={
-                <textarea placeholder={"test"}/>
-            }/>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route
-                path="/"
-                element={
-                    <PrivateRoute>
-                        <Box>
-                            <Header/>
-                            <MainBoard/>
-                        </Box>
-                    </PrivateRoute>
-                }
-            />
-            <Route path="*" element={<Navigate to="/" replace/>}/>
-        </Routes>
+        <>
+            <LoadingBackDrop/>
+            <Routes>
+                <Route path="/test" element={
+                    <textarea placeholder={"test"}/>
+                }/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route
+                    path="/"
+                    element={
+                        <PrivateRoute>
+                            <Box>
+                                <Header/>
+                                <MainBoard/>
+                            </Box>
+                        </PrivateRoute>
+                    }
+                />
+                <Route path="*" element={<Navigate to="/" replace/>}/>
+            </Routes>
+        </>
+
     )
 }
 

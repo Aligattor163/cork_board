@@ -6,7 +6,7 @@ import {immer} from "zustand/middleware/immer";
 import {createJSONStorage, devtools, persist} from "zustand/middleware";
 import ApiService from "../src/services/api-service.tsx";
 
-interface AuthStoreInitialState {
+interface AuthStoreState {
     token: Token,
     isLogged: boolean
 }
@@ -19,10 +19,10 @@ interface AuthStoreActions {
     logout: () => Promise<void>
 }
 
-interface AuthStoreState extends AuthStoreInitialState, AuthStoreActions {
+interface AuthStore extends AuthStoreState, AuthStoreActions {
 }
 
-const authStoreInitialState = {
+const authStoreInitialState: AuthStoreState = {
     token: {
         value: "",
         userID: ""
@@ -30,7 +30,7 @@ const authStoreInitialState = {
     isLogged: false
 }
 
-const authStore: StateCreator<AuthStoreState,
+const authStore: StateCreator<AuthStore,
     [
         ["zustand/immer", never],
         ["zustand/devtools", never],
@@ -85,7 +85,7 @@ const authStore: StateCreator<AuthStoreState,
     }
 });
 
-export const useAuthStore = create<AuthStoreState>()(
+export const useAuthStore = create<AuthStore>()(
     immer(
         devtools(
             persist(authStore, {
