@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import UtilService from "../services/util-service.ts";
 import type {Sticker} from "../../../shared/types/AppTypes.ts";
 import Logger from "../services/log-service.ts";
+import ApiService from "../services/api-service.tsx";
+import Routes from "../../../shared/Routes.ts";
 
 interface PinStickerDialogProps {
     isOpened: boolean,
@@ -57,11 +59,18 @@ const PinStickerDialog: React.FC<PinStickerDialogProps> = ({isOpened, onClose}) 
     }
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setId(crypto.randomUUID());
 
-        Logger.debug(`Fetching new note with content: <${JSON.stringify(formData)}>`);
+        if (formData.header && formData.content) {
+            setId(crypto.randomUUID());
 
-        handleClose();
+            ApiService.post(Routes.createSticker, formData)
+                .then(() => {
+                    handleClose();
+                })
+                .catch((err) => {
+                    Logger.error(`Unexpected error during sticker creation: ${err}`)
+                })
+        }
     }
 
     const handleClose = () => {

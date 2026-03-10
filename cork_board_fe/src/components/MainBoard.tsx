@@ -72,6 +72,7 @@ const MainBoard: React.FC = () => {
     }
     const handleAddDialogClose = (): void => {
         setShowAddDialog(false);
+        loadStickers();
     }
 
     const loadStickers = () => {

@@ -15,8 +15,7 @@ app.use(express.json())
 app.use(logger)
 app.use(delay(300))
 
-app.use("/", authRoutes)
-app.use(Routes.stickers, stickerRoutes)
+app.use("/", [authRoutes, stickerRoutes])
 
 app.use(errorMiddleware)
 

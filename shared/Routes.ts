@@ -5,7 +5,8 @@ export const Routes = {
     checkToken: "/api/v1/token/check",
 
     // Stickers routes
-    stickers: "/api/v1/stickers"
+    stickers: "/api/v1/stickers",
+    createSticker: "/api/v1/stickers/create"
 }
 
 export default Routes;
