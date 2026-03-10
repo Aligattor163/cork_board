@@ -5,10 +5,11 @@ import TokenService from "../services/token-service";
 import tokenService from "../services/token-service";
 import logger from "../middleware/logger.middleware";
 import Routes from "@shared/Routes";
+import delay from "../middleware/delay.middleware";
 
 const authRoutes = Router()
 
-authRoutes.post(Routes.authenticate, logger, (req, res) => {
+authRoutes.post(Routes.authenticate, logger, delay(1000), (req, res) => {
     console.log("Authentication")
     const user: User = req.body as User;
     const userMail: string = user.email;

@@ -21,7 +21,9 @@ export const useLoadingStore = create<LoadingStore>()(
         {
             ...loadingStoreInitialState,
             switchLoading: (value: boolean) => {
-                set((state) => state.isLoading = value)
+                set((state) => {
+                    state.isLoading = value
+                })
             }
         }
     )))
